@@ -48,17 +48,17 @@ HashMap * createMap(long capacity) {
     if(capacity <= 0){
         return NULL;
     }
-    HashMap *Mapa = (Hashmap*)malloc(sizeof(Hashmap));
+    HashMap *Mapa = (HashMap*)malloc(sizeof(HashMap));
     if(Mapa == NULL){
         return NULL;
     }
     Mapa->buckets = (Pair**)calloc(capacity, sizeof(Pair*));
     if(Mapa->buckets == NULL){
-        free(map);
+        free(Mapa);
         return NULL;
     }
     Mapa->capacity = capacity;
-    Mapa->size = 0
+    Mapa->size = 0;
     return Mapa;
 }
 
