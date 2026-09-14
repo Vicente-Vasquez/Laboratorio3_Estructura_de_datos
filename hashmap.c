@@ -155,17 +155,19 @@ Pair * firstMap(HashMap * map){
     }
 }
 
+
 Pair * nextMap(HashMap * map){
     if (map == NULL || map->buckets == NULL || map->current < 0){
         return NULL;
     }
-    for (int i = map->current + 1; i < map->capacity; i++) {
-        if (map->buckets[i] != NULL && map->buckets[i]->key != NULL) {
+    for(int i = map->current + 1; i < map->capacity; i++){
+        if (map->buckets[i] != NULL && map->buckets[i]->key != NULL){
             map->current = i;
             return map->buckets[i];
         }
     }
 }
+
 
 
 // 6.- Implemente la función void enlarge(HashMap * map). Esta función agranda la capacidad del arreglo buckets y reubica todos sus elementos. 
