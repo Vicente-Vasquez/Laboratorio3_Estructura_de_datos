@@ -153,7 +153,7 @@ Pair * firstMap(HashMap * map){
             return map->buckets[i];
         }
     }
-
+}
 
 Pair * nextMap(HashMap * map){
     if (map == NULL || map->buckets == NULL || map->current < 0){
@@ -165,7 +165,7 @@ Pair * nextMap(HashMap * map){
             return map->buckets[i];
         }
     }
-
+}
 
 
 
