@@ -59,7 +59,7 @@ HashMap * createMap(long capacity) {
     }
     Mapa->capacity = capacity;
     Mapa->size = 0;
-    Mapa->current = 0;
+    Mapa->current = -1;
     return Mapa;
 }
 
