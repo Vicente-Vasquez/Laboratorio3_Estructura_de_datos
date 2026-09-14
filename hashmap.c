@@ -76,23 +76,23 @@ void insertMap(HashMap * map, char * key, void * value) {
     if (map == NULL || key == NULL){
         return;
     }
-    long idx = hash(key, map->capacity);
-    while (map->buckets[idx] != NULL && map->buckets[idx]->key != NULL){
-        if (is_equal(map->buckets[idx]->key, key)) {
-            map->current = idx;
+    int P_inicial = hash(key, map->capacity);
+    while (map->buckets[P_inicial] != NULL && map->buckets[P_inicial]->key != NULL){
+        if (is_equal(map->buckets[P_inicial]->key, key)) {
+            map->current = P_inicial;
             return;
         }
-        idx = (idx + 1) % map->capacity;
+        P_inicial= (P_inicial + 1) % map->capacity;
     }
-    if (map->buckets[idx] == NULL) {
-        map->buckets[idx] = createPair(key, value);
+    if (map->buckets[P_inicial] == NULL) {
+        map->buckets[P_inicial] = createPair(key, value);
     } 
     else {
-        map->buckets[idx]->key = key;
-        map->buckets[idx]->value = value;
+        map->buckets[P_inicial]->key = key;
+        map->buckets[P_inicial]->value = value;
     }
     map->size++;
-    map->current = idx;
+    map->current = P_inicial;
 }
 
 // 3. Implemente la función Pair * searchMap(HashMap * map, char * key), la cual retorna el Pair asociado a la clave ingresada. 
@@ -103,8 +103,21 @@ void insertMap(HashMap * map, char * key, void * value) {
 // Recuerde actualizar el índice current a la posición encontrada. Recuerde que el arreglo es circular.
 
 Pair * searchMap(HashMap * map,  char * key) {   
-
-
+    if (map == NULL || key == NULL){
+        return NULL;
+    }
+    int P_inicial = hash(key, map->capacity);
+    int inicio = P_inicial;
+    while (map->buckets[P_inicial] != NULL) {
+        if (map->buckets[P_inicial]->key != NULL && is_equal(map->buckets[P_inicial]->key, key)){
+            map->current = P_inicial; 
+            return map->buckets[P_inicial];
+        }
+        P_inicial = (P_inicial + 1) % map->capacity;
+        if (P_inicial == inicio){
+            break;
+        }
+    }
     return NULL;
 }
 
